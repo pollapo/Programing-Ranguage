@@ -1,0 +1,42 @@
+import turtle as t
+import random
+
+t.shape("turtle")
+t.color("blue")
+t.pensize(5)
+t.speed(0)
+
+t.up()                              #500*500 경계
+t.goto(250, 250)
+t.down()
+t.goto(250, -250)
+t.goto(-250, -250)
+t.goto(-250, 250)
+t.goto(250, 250)
+
+t.up()
+t.home()                            #거북이를 처음위치로
+t.down()
+
+a = random.randint(0, 360)          #거북이의 출발각도를을 랜덤으로 해줌
+t.seth(a)
+t.color("black")
+
+for x in range(999999999):          #거북이가 계속 튕길 수 있게 큰 수를 주어 반복시킴
+    t.fd(1)
+
+    b = t.xcor()                    #거북이의 x좌표를 저장
+    c = t.ycor()                    #거북이의 y좌표를 저장
+    d = t.heading()                 #거북이의 각도를 저장
+
+    if b >= 250 :                   #거북이의 x, y 좌표가 500*500범위 넘어가지 않게 하고 입사각->반사각으로 나아가게함
+        t.seth(180-d)
+
+    if b <= -250 :
+        t.seth(180-d)
+
+    if c >= 250 :
+        t.seth(360-d)
+
+    if c <= -250 :
+        t.seth(360-d)
